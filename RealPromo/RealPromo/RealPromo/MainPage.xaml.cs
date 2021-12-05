@@ -1,4 +1,5 @@
 ﻿using RealPromo.Models;
+using RealPromo.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,21 +18,13 @@ namespace RealPromo
         {
             InitializeComponent();
 
-            GetPromocoes();
+            new RealPromoSignalR(lista);
 
             ListViewPromocao.ItemsSource = lista;
 
-            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
-            {
-                lista.Add(new Promocao { Empresa = "Carrefour", Chamada = "Notebooks em promoções" + DateTime.Now.ToString(), Regras = "20 unidades", EnderecoURL = "https://www.carrefour.com.br" });
-                return true;
-            });
+
         }
 
-        private void GetPromocoes()
-        {
-            lista.Add(new Promocao { Empresa = "Carrefour", Chamada = "Tvs em promoções", Regras = "10 unidades", EnderecoURL = "https://www.carrefour.com.br" }); 
-            lista.Add(new Promocao { Empresa = "Carrefour", Chamada = "Notebooks em promoções", Regras = "20 unidades", EnderecoURL = "https://www.carrefour.com.br" });
-        }
+
     }
 }
